@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome App</title>
+    <style>
+      * {
+        font-size: 50px;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+      }
+
+      body {
+        background-color: azure;
+        background-image: url("welcome.jpg");
+        background-repeat: no-repeat;
+      }
+
+      h1 {
+        font-family: cursive;
+        /* background-color: rgb(52, 111, 116); */
+        color: rgb(131, 217, 213);
+        width: 400px;
+        text-shadow: 2px 2px red;
+      }
+
+      h2 {
+        font-family: cursive;
+        color: aquamarine;
+      }
+
+      input[type="text"] {
+        width: 30vw;
+        border-radius: 20px;
+        background-color: rgb(255, 255, 255);
+        font-family: cursive;
+        border-color: blueviolet;
+      }
+
+      input[type="submit"] {
+        border-radius: 10px;
+        width: 20vw;
+        font-family: cursive;
+      }
+
+      input[type="submit"]:hover {
+        color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1>Welcome App</h1>
+      <form onsubmit="check()">
+        <input type="text" placeholder="Enter your Name" id="name" />
+        <br /><br />
+        <input type="submit" />
+      </form>
+
+      <h2 id="msg"></h2>
+
+      <script>
+        function check() {
+          event.preventDefault();
+          let name = document.getElementById("name");
+          let msg = document.getElementById("msg");
+
+          if (name.value == "") {
+            alert("Please Enter The Name");
+            msg.innerHTML = "";
+            name.focus();
+            return;
+          }
+
+          if (name.value.trim() == "") {
+            alert("Please Enter The Name");
+            msg.innerHTML = "";
+            name.value = "";
+            name.focus();
+            return;
+          }
+
+          if (!name.value.match(/^[A-Za-z ]+$/)) {
+            alert("Name shud contain only alphabets");
+            msg.innerHTML = "";
+            name.value = "";
+            name.focus();
+            return;
+          }
+
+          let d = new Date();
+          let hr = d.getHours();
+          let ans = "";
+          if (hr < 12) ans = "Good Morning " + name.value;
+          else if (hr < 16) ans = "Good Afternoon " + name.value;
+          else ans = "Good Evening " + name.value;
+          msg.innerHTML = ans;
+        }
+      </script>
+    </center>
+  </body>
+</html>
